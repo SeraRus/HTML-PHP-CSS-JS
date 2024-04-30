@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/submit" method="post">
+    <label for="email">email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <input type="submit" value="submit">
+</form>
+
+<p id="message"></p>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let email = document.getElementById('email').value;
+        let message = document.getElementById('message');
+    function mail(mail) {
+        if (!mail.includes('@') || mail.includes('@@')) {
+            return false;
+        }
+        let [user, domain] = mail.split('@');
+        let pattern = new RegExp('[^a-zA-Z0-9.+]');
+        if (pattern.test(user)) {
+            return false;
+        }
+        if (user.charAt(0) === '.' || user.charAt(user.length - 1) === '.' || user.includes("..")) {
+            return false;
+        }
+        pattern = new RegExp('[^a-zA-Z0-9\-.]{3,}')
+        if (pattern.test(domain) || domain.includes('+')) {
+            return false;
+        }
+        if (!domain.includes('.') || domain.charAt(0) === '.' || domain.charAt(domain.length - 1) === '.' || domain.includes("..")) {
+            return false;
+        }
+        return !(domain.includes("-.") || domain.includes(".-"));
+    }
+
+    if (mail(email)) {
+        message.innerHTML = "Valid";
+    } else {
+        message.innerHTML = "Invalid";
+    }
+    });
+</script>
+
+</body>
+</html>
