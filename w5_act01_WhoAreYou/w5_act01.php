@@ -30,7 +30,7 @@
         echo "
 <form method=\"post\" action=\"w5_act01.php\">
     <p>姓名:<label>
-            <input type=\"text\" name=\"name\" min=\"10\" required>
+            <input type=\"text\" name=\"name\" required>
         </label></p>
     <p>性別:<label>
             <input type=\"radio\" name=\"sex\" value=\"男\" required> 男
